@@ -1,4 +1,4 @@
-export const policiesSiteFilters = [
+export const accountsSiteFilters = [
   {
     label: 'Po, Inc.',
     value: 1
@@ -17,7 +17,7 @@ export const policiesSiteFilters = [
   }
 ];
 
-export const accountsSiteFilters = [
+export const  policiesSiteFilters = [
   {
     label: 'Some thing', // policy 1, 3
     value: 1
@@ -53,8 +53,8 @@ export const members = [
     age: 26,
     occupation: 'Freelancer',
     country: 'US',
-    policy: 3,
-    account: 1
+    policy: 1,
+    account: 3
   },
   {
     id: 4,
@@ -62,8 +62,8 @@ export const members = [
     age: 26,
     occupation: 'Pastry Chef',
     country: 'US',
-    policy: 4,
-    account: 2
+    policy: 2,
+    account: 4
   },
   {
     id: 5,
@@ -107,8 +107,8 @@ export const members = [
     age: 75,
     occupation: 'Con',
     country: 'Ukraine',
-    policy: 3,
-    account: 1
+    policy: 1,
+    account: 3
   }
 ];
 
@@ -145,16 +145,16 @@ export const messages = [
     description: 'Half-light',
     user: 1,
     id: 3,
-    policy: 4,
-    account: 2
+    policy: 2,
+    account: 4
   },
   {
     message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ',
     description: 'Bike Dream',
     user: 2,
     id: 4,
-    policy: 4,
-    account: 2
+    policy: 2,
+    account: 4
   },
   {
     message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ',
@@ -177,15 +177,15 @@ export const messages = [
     description: 'No Pain',
     user: 1,
     id: 7,
-    policy: 3,
-    account: 1
+    policy: 1,
+    account: 3
   },
   {
     message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ',
     description: 'Wood',
     user: 2,
     id: 8,
-    policy: 3,
-    account: 1
+    policy: 1,
+    account: 3
   }
 ];
