@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {DataService} from '../data.service';
 import {FormControl} from '@angular/forms';
-import {map} from 'rxjs/operators';
+import {map, shareReplay} from 'rxjs/operators';
 
 
 @Component({
@@ -13,11 +13,7 @@ export class MembersComponent {
   filterControl = new FormControl();
   filterControlStream$ = this.filterControl.valueChanges;
 
-  dataSource;
+  dataSource$ = this.dataService.getMembers('').pipe(shareReplay(1));
 
-  constructor(private dataService: DataService) {
-    this.dataService.getMembers('').subscribe(value => {
-      this.dataSource = value;
-    });
-  }
+  constructor(private dataService: DataService) {}
 }
