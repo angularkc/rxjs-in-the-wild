@@ -1,23 +1,26 @@
-<div class="mat-elevation-z2 filter-wrapper">
-  <mat-form-field appearance="outline">
-    <mat-label>Policies</mat-label>
-    <mat-select>
-      <mat-option value="">--</mat-option>
-      <mat-option *ngFor="let item of accounts$ | async" [value]="item.value">
-        {{item.label}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+<div class="mat-elevation-z2" style="padding: 1rem 1rem 0">
+  <h2 class="mat-h2" style="margin: 0;">Site Filters</h2>
+  <div class="filter-wrapper">
+    <mat-form-field appearance="outline">
+      <mat-label>Policies</mat-label>
+      <mat-select>
+        <mat-option value="">--</mat-option>
+        <mat-option *ngFor="let item of accounts$ | async" [value]="item.value">
+          {{item.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Accounts</mat-label>
-    <mat-select>
-      <mat-option value="">--</mat-option>
-      <mat-option *ngFor="let item of policies$ | async" [value]="item.value">
-        {{item.label}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Accounts</mat-label>
+      <mat-select>
+        <mat-option value="">--</mat-option>
+        <mat-option *ngFor="let item of policies$ | async" [value]="item.value">
+          {{item.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <button mat-raised-button (click)="applyFilters()">Apply</button>
+    <button mat-raised-button (click)="applyFilters()">Apply</button>
+  </div>
 </div>

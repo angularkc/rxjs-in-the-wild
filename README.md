@@ -1,6 +1,25 @@
 # RxjsExamples
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.4.
+##### Step - 1
+- Add operator so that requests to the server are only 
+made once, regardless of the number of subscriptions
+
+#### Step - 2
+- Combine FormControl valueChanges on Members page and the GET-request
+streams so that new data is requested when the component filters update.
+
+#### Step - 3 
+- Slow down the number of requests being made for members' data.
+- Avoid requests with duplicate values.
+
+#### Step - 4
+- For Messages page, do what was done in step 2, but also combine 
+the second filter's stream with the first so that data is update if 
+either changes.
+
+#### Step - 5
+- Set up DataService so that the GET-request
+streams react to changes in the site-filters.
 
 ## Development server
 
