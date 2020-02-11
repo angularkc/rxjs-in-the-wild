@@ -7,12 +7,14 @@ import {MaterialModule} from './material.module';
 import { MembersComponent } from './members/members.component';
 import { MessagesComponent } from './messages/messages.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SiteFiltersComponent } from './site-filters/site-filters.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MembersComponent,
-    MessagesComponent
+    MessagesComponent,
+    SiteFiltersComponent
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import {DataService} from '../data.service';
 import {FormControl} from '@angular/forms';
+import {map} from 'rxjs/operators';
 
-function filteringFunction(filterValue: string, valuesToFilter: {name: string}[]) {
-  return valuesToFilter.filter((value) => value.name.includes(filterValue));
-}
 
 @Component({
   selector: 'app-members',
@@ -15,7 +13,7 @@ export class MembersComponent {
   filterControl = new FormControl();
   filterControlStream$ = this.filterControl.valueChanges;
 
-  dataSource$ = this.dataService.members$;
+  dataSource$ = this.dataService.getMembers('');
   displayedColumns = ['id', 'name', 'age', 'occupation', 'country'];
 
 
