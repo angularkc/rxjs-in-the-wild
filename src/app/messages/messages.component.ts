@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { DataService } from '../data.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import {share, shareReplay} from 'rxjs/operators';
+import { shareReplay } from 'rxjs/operators';
 
 interface FilterFormValue {
   description: string;
