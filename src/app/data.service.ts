@@ -1,16 +1,16 @@
-import {Injectable} from '@angular/core';
-import {of} from 'rxjs';
-import {accountsSiteFilters, members, messages, policiesSiteFilters, users} from './data';
-import {map, tap} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, of } from 'rxjs';
+import { accountsSiteFilters, members, messages, policiesSiteFilters, users } from './data';
+import { map, switchMap, tap } from 'rxjs/operators';
 
 function filterByString(filterValue: string, valuesToFilter: any[], key: string) {
   if (!filterValue) return valuesToFilter;
-  return valuesToFilter.filter((value) => value[key].includes(filterValue));
+  return valuesToFilter.filter(value => value[key].includes(filterValue));
 }
 
 function filterByEquality(filterValue: any, valuesToFilter: any[], key: string) {
   if (filterValue === null || filterValue === undefined) return valuesToFilter;
-  return valuesToFilter.filter((value) => value[key] === filterValue);
+  return valuesToFilter.filter(value => value[key] === filterValue);
 }
 
 interface SiteFilters {
@@ -24,7 +24,7 @@ interface SiteParams extends SiteFilters {
   userId?: number;
 }
 
-const mockHttp =  {
+const mockHttp = {
   get(path: 'messages' | 'members', params?: SiteParams) {
     let request;
     if (path === 'messages') {
@@ -38,22 +38,25 @@ const mockHttp =  {
       request = of(members).pipe(
         map(values => filterByString(params.name, values, 'name')),
         map(values => filterByEquality(params.policy, values, 'policy')),
-        map(values => filterByEquality(params.account, values, 'account')),
+        map(values => filterByEquality(params.account, values, 'account'))
       );
     }
 
-    return request.pipe(tap(val => {
-      console.log(`Request made for '${path}'`, val);
-    }));
+    return request.pipe(
+      tap(val => {
+        console.log(`Request made for '${path}'`, val);
+      })
+    );
   }
 };
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
   mockHttp = mockHttp;
+  private siteFilterSource = new BehaviorSubject<SiteFilters>({});
+  siteFilter$ = this.siteFilterSource.asObservable();
 
   // Filter Data
   policiesSiteFilters$ = of(policiesSiteFilters);
@@ -65,9 +68,14 @@ export class DataService {
   // ==================== //
 
   getMembers(name: string) {
-    return this.mockHttp.get('members', {
-      name
-    });
+    return this.siteFilter$.pipe(
+      switchMap(filters =>
+        this.mockHttp.get('members', {
+          ...filters,
+          name
+        })
+      )
+    );
   }
 
   getMessages(description?: string, userId?: number) {
@@ -77,8 +85,8 @@ export class DataService {
     });
   }
 
-  applyFilters({policy, account}: SiteFilters) {
+  applyFilters(filters: SiteFilters) {
     // Trigger changes here
+    this.siteFilterSource.next(filters);
   }
-
 }
