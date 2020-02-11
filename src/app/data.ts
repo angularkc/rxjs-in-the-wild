@@ -114,12 +114,12 @@ export const members = [
 
 export const users = [
   {
-    id: 1,
-    name: 'Benifer Handsoap'
+    value: 1,
+    label: 'Benifer Handsoap'
   },
   {
-    id: 2,
-    name: 'Joneson Terrycloth'
+    value: 2,
+    label: 'Joneson Terrycloth'
   }
 ];
 

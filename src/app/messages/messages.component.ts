@@ -1,22 +1,29 @@
 import { Component } from '@angular/core';
 import {DataService} from '../data.service';
-import {FormControl} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Observable} from 'rxjs';
 
 @Component({
-  selector: 'app-messages',
-  templateUrl: './messages.component.html',
-  styles: []
+  templateUrl: './messages.component.html'
 })
 export class MessagesComponent {
-  filterControl = new FormControl();
-  filterControlStream$ = this.filterControl.valueChanges;
-
-  dataSource;
   displayedColumns = ['id', 'description', 'message', 'user'];
+
+  filterForm = new FormGroup({
+    description: new FormControl(),
+    userId: new FormControl(),
+  });
+  filterFormStream$: Observable<{description: string, userId: number}> = this.filterForm.valueChanges;
+
+  users;
+  dataSource;
 
   constructor(private dataService: DataService) {
     this.dataService.getMessages('').subscribe(value => {
       this.dataSource = value;
+    });
+    this.dataService.usersFilters$.subscribe(value => {
+      this.users = value;
     });
   }
 }

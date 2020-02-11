@@ -5,17 +5,15 @@ import {map} from 'rxjs/operators';
 
 
 @Component({
-  selector: 'app-members',
-  templateUrl: './members.component.html',
-  styles: []
+  templateUrl: './members.component.html'
 })
 export class MembersComponent {
+  displayedColumns = ['id', 'name', 'age', 'occupation', 'country'];
+
   filterControl = new FormControl();
   filterControlStream$ = this.filterControl.valueChanges;
 
   dataSource;
-  displayedColumns = ['id', 'name', 'age', 'occupation', 'country'];
-
 
   constructor(private dataService: DataService) {
     this.dataService.getMembers('').subscribe(value => {
