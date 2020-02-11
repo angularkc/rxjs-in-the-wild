@@ -13,9 +13,13 @@ export class MembersComponent {
   filterControl = new FormControl();
   filterControlStream$ = this.filterControl.valueChanges;
 
-  dataSource$ = this.dataService.getMembers('');
+  dataSource;
   displayedColumns = ['id', 'name', 'age', 'occupation', 'country'];
 
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {
+    this.dataService.getMembers('').subscribe(value => {
+      this.dataSource = value;
+    });
+  }
 }

@@ -11,8 +11,12 @@ export class MessagesComponent {
   filterControl = new FormControl();
   filterControlStream$ = this.filterControl.valueChanges;
 
-  dataSource$ = this.dataService.getMessages('Poly' );
+  dataSource;
   displayedColumns = ['id', 'description', 'message', 'user'];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {
+    this.dataService.getMessages('').subscribe(value => {
+      this.dataSource = value;
+    });
+  }
 }

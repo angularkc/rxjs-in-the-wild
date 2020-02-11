@@ -1,6 +1,7 @@
 # RxjsExamples
 
-##### Step - 1
+#### Step - 1
+- Update components to remove subscriptions.
 - Add operator so that requests to the server are only 
 made once, regardless of the number of subscriptions
 
