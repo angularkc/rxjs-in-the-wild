@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
+  routes = [{
+    label: 'Members',
+    value: 'members'
+  }, {
+    label: 'Messages',
+    value: 'messages'
+  }];
 }
