@@ -1,8 +1,11 @@
-<mat-form-field appearance="fill">
-  <mat-label>Input</mat-label>
-  <input matInput [formControl]="filterControl">
-</mat-form-field>
+<div class="filter-wrapper">
+  <mat-form-field appearance="outline">
+    <mat-label>Name Search</mat-label>
+    <input matInput [formControl]="filterControl">
+  </mat-form-field>
+</div>
 <div class="table-wrapper">
+  <h2 class="mat-h2 table-header" matBadge="{{(dataSource$ | async).length}}" matBadgeOverlap="false">Members</h2>
   <table mat-table [dataSource]="dataSource$ | async" class="mat-elevation-z8">
     <!-- id -->
     <ng-container matColumnDef="id">

@@ -43,6 +43,7 @@
         ]
       }
     ],
+    "curly": [true, "ignore-same-line"],
     "no-consecutive-blank-lines": false,
     "no-console": [
       true,

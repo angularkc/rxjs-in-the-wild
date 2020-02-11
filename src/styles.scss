@@ -10,8 +10,29 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .mat-table {
     min-width: 650px;
   }
+  .table-header {
+    display: inline-block;
+  }
 }
 
 .mat-form-field {
-  padding: 1rem;
+  padding: 1rem .5rem;
+}
+
+.filter-wrapper {
+  display: grid;
+  align-items: center;
+  justify-content: start;
+  grid-auto-flow: column;
+  grid-gap: 1rem;
+  .mat-form-field {
+    min-width: 200px;
+  }
+  button {
+    width: auto;
+  }
+
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+  }
 }
