@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { DataService } from '../data.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import {shareReplay, startWith, switchMap} from 'rxjs/operators';
+import { debounceTime, shareReplay, startWith, switchMap } from 'rxjs/operators';
 
 interface FilterFormValue {
   description: string;
@@ -19,16 +19,17 @@ export class MessagesComponent {
     description: new FormControl(),
     userId: new FormControl()
   });
-  filterFormStream$: Observable<FilterFormValue> = this.filterForm.valueChanges;
+  filterFormStream$: Observable<FilterFormValue> = this.filterForm.valueChanges.pipe(
+    debounceTime(300),
+    startWith({} as any)
+  );
 
   users$ = this.dataService.usersFilters$;
   dataSource$ = this.filterFormStream$
     .pipe(
-      startWith({} as any),
-      switchMap((filters) => {
-        return this.dataService.getMessages(filters.description, filters.userId);
-      }))
-    .pipe(shareReplay(1));
+      switchMap(filters => this.dataService.getMessages(filters.description, filters.userId)),
+      shareReplay(1)
+    );
 
   constructor(private dataService: DataService) {}
 }
