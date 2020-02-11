@@ -5,7 +5,7 @@
   </mat-form-field>
 </div>
 <div class="table-wrapper">
-  <h2 class="mat-h2 table-header" matBadge="{{(dataSource$ | async).length}}" matBadgeOverlap="false">Members</h2>
+  <h2 class="mat-h2 table-header" matBadge="{{(dataSource$ | async)?.length}}" matBadgeOverlap="false">Members</h2>
   <table mat-table [dataSource]="dataSource$ | async" class="mat-elevation-z8">
     <!-- id -->
     <ng-container matColumnDef="id">
