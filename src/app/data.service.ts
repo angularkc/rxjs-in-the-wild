@@ -79,10 +79,15 @@ export class DataService {
   }
 
   getMessages(description?: string, userId?: number) {
-    return this.mockHttp.get('messages', {
-      description,
-      userId
-    });
+    return this.siteFilter$.pipe(
+      switchMap(filters =>
+        this.mockHttp.get('messages', {
+          ...filters,
+          description,
+          userId
+        })
+      )
+    );
   }
 
   applyFilters(filters: SiteFilters) {

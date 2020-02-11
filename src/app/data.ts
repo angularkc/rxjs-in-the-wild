@@ -1,4 +1,4 @@
-export const policiesSiteFilters = [
+export const accountsSiteFilters = [
   {
     label: 'Po, Inc.',
     value: 1
@@ -17,7 +17,7 @@ export const policiesSiteFilters = [
   }
 ];
 
-export const accountsSiteFilters = [
+export const policiesSiteFilters = [
   {
     label: 'Some thing', // policy 1, 3
     value: 1

@@ -5,7 +5,7 @@
       <mat-label>Policies</mat-label>
       <mat-select [(value)]="selectedPolicy">
         <mat-option [value]="null">--</mat-option>
-        <mat-option *ngFor="let item of accounts$ | async" [value]="item.value">
+        <mat-option *ngFor="let item of policies$ | async" [value]="item.value">
           {{item.label}}
         </mat-option>
       </mat-select>
@@ -15,7 +15,7 @@
       <mat-label>Accounts</mat-label>
       <mat-select [(value)]="selectedAccount">
         <mat-option [value]="null">--</mat-option>
-        <mat-option *ngFor="let item of policies$ | async" [value]="item.value">
+        <mat-option *ngFor="let item of accounts$ | async" [value]="item.value">
           {{item.label}}
         </mat-option>
       </mat-select>
