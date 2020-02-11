@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
-import {DataService} from '../data.service';
-import {FormControl, FormGroup} from '@angular/forms';
-import {Observable} from 'rxjs';
+import { DataService } from '../data.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+
+interface FilterFormValue {
+  description: string;
+  userId: number;
+}
 
 @Component({
   templateUrl: './messages.component.html'
@@ -11,9 +16,9 @@ export class MessagesComponent {
 
   filterForm = new FormGroup({
     description: new FormControl(),
-    userId: new FormControl(),
+    userId: new FormControl()
   });
-  filterFormStream$: Observable<{description: string, userId: number}> = this.filterForm.valueChanges;
+  filterFormStream$: Observable<FilterFormValue> = this.filterForm.valueChanges;
 
   users;
   dataSource;

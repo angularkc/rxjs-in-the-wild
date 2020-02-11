@@ -6,7 +6,7 @@
   <mat-form-field appearance="outline">
     <mat-label>Users</mat-label>
     <mat-select formControlName="userId">
-      <mat-option value="">--</mat-option>
+      <mat-option [value]="null">--</mat-option>
       <mat-option *ngFor="let item of users" [value]="item.value">
         {{item.label}}
       </mat-option>
