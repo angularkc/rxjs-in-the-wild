@@ -3,7 +3,7 @@
   <div class="filter-wrapper">
     <mat-form-field appearance="outline">
       <mat-label>Policies</mat-label>
-      <mat-select>
+      <mat-select [(value)]="selectedPolicy">
         <mat-option [value]="null">--</mat-option>
         <mat-option *ngFor="let item of accounts$ | async" [value]="item.value">
           {{item.label}}
@@ -13,7 +13,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Accounts</mat-label>
-      <mat-select>
+      <mat-select [(value)]="selectedAccount">
         <mat-option [value]="null">--</mat-option>
         <mat-option *ngFor="let item of policies$ | async" [value]="item.value">
           {{item.label}}
