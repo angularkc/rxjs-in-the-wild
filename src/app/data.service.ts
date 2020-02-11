@@ -9,19 +9,26 @@ function filteringFunction(filterValue: string, valuesToFilter: any[], key: stri
   return valuesToFilter.filter((value) => value[key].includes(filterValue));
 }
 
+interface SiteFilters {
+  policy: number;
+  account: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  // Filter Data
   policiesSiteFilters$ = of(policiesSiteFilters);
-
   accountsSiteFilters$ = of(accountsSiteFilters);
-
+  usersFilters$ = of(users);
+  // Table Data
   members$ = of(members);
-
-  users$ = of(users);
-
   messages$ = of(messages);
+
+  // ==================== //
+  // Your Code Here       //
+  // ==================== //
 
   getMembers(filter: string) {
     return this.members$.pipe(map(values => filteringFunction(filter, values, 'name')));
@@ -29,6 +36,10 @@ export class DataService {
 
   getMessages(filter: string) {
     return this.messages$.pipe(map(values => filteringFunction(filter, values, 'description')));
+  }
+
+  applyFilters({policy, account}: SiteFilters) {
+    // Trigger changes here
   }
 
 }

@@ -1,1 +1,24 @@
-<p>site-filters works!</p>
+<div class="mat-elevation-z2 site-filters">
+  <mat-form-field>
+    <mat-label>Policies</mat-label>
+    <mat-select>
+      <mat-option value="">--</mat-option>
+      <mat-option *ngFor="let item of accounts$ | async" [value]="item.value">
+        {{item.label}}
+      </mat-option>
+
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Accounts</mat-label>
+    <mat-select>
+      <mat-option value="">--</mat-option>
+      <mat-option *ngFor="let item of policies$ | async" [value]="item.value">
+        {{item.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button (click)="applyFilters()">Apply</button>
+</div>
