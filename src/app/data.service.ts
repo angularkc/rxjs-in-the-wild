@@ -21,7 +21,8 @@ interface SiteFilters {
 }
 
 interface SiteParams {
-  filterString?: string;
+  description?: string;
+  name?: string;
   userId?: number;
 }
 
@@ -30,11 +31,13 @@ const mockHttp =  {
     let request;
     if (path === 'messages') {
       request = of(messages).pipe(
-        map(values => filterByString(params.filterString, values, 'description')),
+        map(values => filterByString(params.description, values, 'description')),
         map(values => filterByEquality(params.userId, values, 'user'))
       );
     } else if (path === 'members') {
-      request = of(members);
+      request = of(members).pipe(
+        map(values => filterByString(params.name, values, 'name'))
+      );
     }
 
     return request.pipe(tap(val => {
@@ -61,15 +64,15 @@ export class DataService {
   // Your Code Here       //
   // ==================== //
 
-  getMembers(filterString: string) {
+  getMembers(name: string) {
     return this.mockHttp.get('members', {
-      filterString
+      name
     });
   }
 
-  getMessages(filterString?: string, userId?: number) {
+  getMessages(description?: string, userId?: number) {
     return this.mockHttp.get('messages', {
-      filterString,
+      description,
       userId
     });
   }
