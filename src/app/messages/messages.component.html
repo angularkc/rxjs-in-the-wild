@@ -7,7 +7,7 @@
     <mat-label>Users</mat-label>
     <mat-select formControlName="userId">
       <mat-option [value]="null">--</mat-option>
-      <mat-option *ngFor="let item of users" [value]="item.value">
+      <mat-option *ngFor="let item of users$ | async" [value]="item.value">
         {{item.label}}
       </mat-option>
     </mat-select>
@@ -15,8 +15,8 @@
 </form>
 
 <div class="table-wrapper">
-  <h2 class="mat-h2 table-header" matBadge="{{dataSource.length}}" matBadgeOverlap="false">Messages</h2>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <h2 class="mat-h2 table-header" matBadge="{{(dataSource$ | async)?.length}}" matBadgeOverlap="false">Messages</h2>
+  <table mat-table [dataSource]="dataSource$ | async" class="mat-elevation-z8">
     <!-- id -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID </th>
